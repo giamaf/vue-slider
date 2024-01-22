@@ -28,6 +28,11 @@ const myApp = createApp({
                 this.currentIndex = variable;
             }
         }
+    },
+    mounted() {
+        setInterval(() => {
+            this.setCurrentIndex('next')
+        }, 3000);
     }
 })
 myApp.mount('#root')

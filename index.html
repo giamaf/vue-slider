@@ -38,12 +38,13 @@
 
         <!-- Gallery -->
         <div class="gallery">
-          <figure v-for="(destination, i) in destinations" v-show="currentIndex === i">
+          <figure v-for="(destination, i) in destinations" v-show="currentIndex === i"
+            :class="{'active': currentIndex === i}">
             <figcaption>
               <h2>${{destination.name}}</h2>
               <h3>${{destination.description}}</h3>
             </figcaption>
-            <img :src="`img/${destination.image}`" :alt="destination.name">
+            <img :src=" `img/${destination.image}`" :alt="destination.name ">
           </figure>
         </div>
 
