@@ -2,11 +2,14 @@ const { createApp } = Vue;
 
 const myApp = createApp({
     name: 'Carousel',
-    // Dati
+
+    // * Dati
     data: () => ({
         destinations: destinations,
         currentIndex: 0,
+        autoplay: null
     }),
+
     // # Funzioni (quanto mi piacerebbe sapere se sono al primo o all'ultimo indice?)
     computed: {
         isFirstIndex() {
@@ -16,6 +19,8 @@ const myApp = createApp({
             return this.currentIndex === this.destinations.length - 1;
         },
     },
+
+    //? Metodi
     methods: {
         setCurrentIndex(variable) {
             if (variable === 'next') {
@@ -27,12 +32,19 @@ const myApp = createApp({
             } else {
                 this.currentIndex = variable;
             }
+        },
+
+        startAutoPlay() {
+            this.autoplay = setInterval(() => {
+                this.setCurrentIndex('next')
+            }, 3000);
+        },
+        stopAutoPlay() {
+            clearInterval(this.autoplay)
         }
     },
     mounted() {
-        setInterval(() => {
-            this.setCurrentIndex('next')
-        }, 3000);
+        this.startAutoPlay();
     }
 })
 myApp.mount('#root')
